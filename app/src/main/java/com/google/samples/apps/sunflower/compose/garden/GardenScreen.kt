@@ -24,10 +24,10 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.grid.GridCells
-import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.grid.rememberLazyGridState
+import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ElevatedCard
@@ -96,10 +96,8 @@ private fun GardenList(
     // Call reportFullyDrawn when the garden list has been rendered
     val gridState = rememberLazyGridState()
     ReportDrawnWhen { gridState.layoutInfo.totalItemsCount > 0 }
-    LazyVerticalGrid(
-        columns = GridCells.Fixed(2),
-        modifier,
-        state = gridState,
+    LazyRow(
+        modifier ,
         contentPadding = PaddingValues(
             horizontal = dimensionResource(id = R.dimen.card_side_margin),
             vertical = dimensionResource(id = R.dimen.margin_normal)
@@ -135,14 +133,15 @@ private fun GardenListItem(
             end = cardSideMargin,
             bottom = dimensionResource(id = R.dimen.card_bottom_margin)
         ),
+        shape = RoundedCornerShape(30),
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.secondaryContainer)
     ) {
-        Column(Modifier.fillMaxWidth()) {
+        Column(Modifier.fillMaxWidth().weight(1f)) {
             SunflowerImage(
                 model = vm.imageUrl,
                 contentDescription = plant.plant.description,
                 Modifier
-                    .fillMaxWidth()
+                    .fillMaxWidth().weight(1f)
                     .height(dimensionResource(id = R.dimen.plant_item_image_height)),
                 contentScale = ContentScale.Crop,
             )

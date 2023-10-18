@@ -21,6 +21,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentWidth
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -56,7 +57,8 @@ fun ImageListItem(name: String, imageUrl: String, onClick: () -> Unit) {
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.secondaryContainer),
         modifier = Modifier
             .padding(horizontal = dimensionResource(id = R.dimen.card_side_margin))
-            .padding(bottom = dimensionResource(id = R.dimen.card_bottom_margin))
+            .padding(bottom = dimensionResource(id = R.dimen.card_bottom_margin)),
+        shape = RoundedCornerShape(30),
     ) {
         Column(Modifier.fillMaxWidth()) {
             SunflowerImage(
